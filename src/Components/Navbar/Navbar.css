@@ -1,0 +1,32 @@
+.text-right {
+    text-align: right !important;
+}
+
+.nav-color {
+    color: white;
+}
+
+.nav-color2 {
+    color: rgb(177, 176, 176);
+}
+
+.link-menu:hover {
+    color: white !important;
+    cursor: pointer;
+}
+
+.nav-margin {
+    margin-left: 85%;
+}
+
+.nav-menu {
+    margin: 0;
+    position: fixed;
+    top : 0;
+    width: 100%;
+    height: 10vh;
+}
+
+.nav-link {
+    cursor: pointer;
+}
