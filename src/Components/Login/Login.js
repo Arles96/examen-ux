@@ -5,7 +5,6 @@ export default class Login extends Component {
 
     constructor(){
         super()
-        this.handleFacebook = this.handleFacebook.bind(this)
         this.handleGoogle = this.handleGoogle.bind(this)
     }
 
@@ -17,30 +16,17 @@ export default class Login extends Component {
                 </button>
             )
         }
-    }
-
-    handleFacebook(){
-        if (this.props.name2){
-            return (
-                <button onClick={this.props.event2} className="btn btn-primary btn-block">
-                    {this.props.name2}
-                </button>
-            )
-        }
-    }
-
-    
+    }    
 
     render(){
         return (
-            <div className="login" >
+            <div id="autenticacion" className="login" >
                 <h2 className="text-center mx-auto" >Autenticación</h2>
                 <p className="mx-auto" >
                     Para poder usar esta aplicación debe de iniciar sesión con 
-                    los siguientes proveedores:
+                    los siguiente proveedor:
                 </p>
                 {this.handleGoogle()}
-                {this.handleFacebook()}    
             </div>
         )
     }

@@ -3,8 +3,11 @@ import './App.css'
 import Navbar from './Components/Navbar/Navbar'
 import Menu from './Components/Menu/Menu'
 import Home from './Components/Home/Home'
-import firebase from 'firebase'
+import firebase, {database} from 'firebase'
 import Login from './Components/Login/Login'
+import Profile from './Components/Profile/Profile'
+import Message from './Components/Message/Message'
+import Wall from './Components/Wall/Wall'
 
 //https://templated.co/industrious
 class App extends Component {
@@ -15,33 +18,46 @@ class App extends Component {
       menu : false,
       user : null,
       google : "Google",
-      facebook : "Facebook"
     }
     this.handleMenu = this.handleMenu.bind(this)
     this.handleOpenMenu = this.handleOpenMenu.bind(this)
     this.handleCloseMenu = this.handleCloseMenu.bind(this)
     this.handleLoginGoogle = this.handleLoginGoogle.bind(this)
+    this.handleProfile = this.handleProfile.bind(this)
+    this.handleAddMessage = this.handleAddMessage.bind(this)
   }
 
-  componentWillMount(){
-    firebase.auth().onAuthStateChanged(user => {
-      this.setState({user})
+  handleAddMessage(e){
+    e.preventDefault()
+    database().ref("message").push({
+      uid : this.state.user.uid,
+      title : e.target.titulo.value,
+      mensaje : e.target.mensaje.value,
+      estado : e.target.estado.value,
+      email : this.state.user.email
     })
+    e.target.titulo.value = ""
+    e.target.mensaje.value = ""
+    alert("Se ha agregado un mensaje")
   }
 
   handleLoginGoogle(){
     if (this.state.user){
       firebase.auth().signOut()
-        .then(result => console.log(`${result.user.email} ha salido`))
+        .then(result => console.log(`${result} ha salido`))
         .catch(err =>  console.log(err))
-      this.setState({user : null, google: "Google", facebook:"Facebook"})
+      this.setState({user : null, google: "Google"})
     }else {
       const provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithPopup(provider)
-        .then(result => {
-          this.setState({google : "Logout Google", facebook: null})
+        .then(res => {
+          this.setState({
+            user : res.user
+          })
+          this.setState({google : "Logout Google"})
         })
-        .catch(err=> console.log(err))
+        .catch(err=> console.log("error: "+err))
+        
     }
   }
 
@@ -60,7 +76,36 @@ class App extends Component {
   handleMenu(){
     if (this.state.menu){
       return (
-          <Menu event={this.handleCloseMenu} />
+          <Menu 
+            event1={this.handleCloseMenu} 
+            event2={this.handleLoginGoogle} 
+            user={this.state.user}
+          />
+      )
+    }
+  }
+
+  handleProfile(){
+    if (this.state.user){
+      return (
+        <div>
+          <Profile 
+            user={this.state.user}
+          />
+          <Message
+            event={this.handleAddMessage}
+          />
+          <Wall
+            user={this.state.user}
+          />
+        </div>
+      )
+    }else {
+      return(
+        <Login 
+          event1={this.handleLoginGoogle}
+          name1={this.state.google}
+        />
       )
     }
   }
@@ -70,12 +115,11 @@ class App extends Component {
       <div>
         <Navbar event={this.handleOpenMenu} />
         <Home />
-        <Login 
-          event1={this.handleLoginGoogle}
-          name1={this.state.google}
-          name2={this.state.facebook}
-        />
+        {this.handleProfile()}
         {this.handleMenu()}
+        <footer className="bg-dark" >
+          By Arles cerrato
+        </footer>
       </div>
     )
   }

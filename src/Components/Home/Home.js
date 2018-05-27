@@ -5,7 +5,7 @@ export default class Home extends Component {
 
     render(){
         return (
-            <div className="main" > 
+            <div id="Home" className="main" > 
                 <div className="center" >
                     <h1 className="text-center" >Bienvenido a ForeX</h1>
                     <p className="text-center">

@@ -3,28 +3,51 @@ import './Menu.css'
 
 export default class Menu extends Component {
 
+    constructor(){
+        super()
+        this.handleUser = this.handleUser.bind(this)
+    }
+
+    handleUser(){
+        if (this.props.user){
+            return (
+                <div>
+                    <hr className="hr" />
+                    <li className="nav-item link-menu" >
+                        <a href="#perfil" className="nav-link">Perfil</a>
+                    </li>
+                    <hr className="hr" />
+                    <li className="nav-item link-menu" >
+                        <a  href="#mensaje" className="nav-link">Nuevo Mensaje</a>
+                    </li>
+                    <hr className="hr" />
+                    <li className="nav-item link-menu" >
+                        <a  href="#muro" className="nav-link">Mensajes</a>
+                    </li>
+                    <hr className="hr" />
+                    <li onClick={this.props.event2} className="nav-item link-menu" >
+                        <a className="nav-link">SignOut</a>
+                    </li>
+                </div>
+            )
+        }
+    }
+
     render(){
         return (
             <nav className="animated bounceInRight menu-deploy bg-dark" >
                 <div className="text-right menu-top" >
-                    <i onClick={this.props.event} class="menu-button fas fa-times-circle"></i>
+                    <i onClick={this.props.event1} className="menu-button fas fa-times-circle"></i>
                     </div>
                 <ul className="nav flex-column nav-color2">
                     <li className="nav-item link-menu" >
-                        <a className="nav-link">Home</a>
+                        <a href="#Home" className="nav-link">Home</a>
                     </li>
-                    <hr/>
+                    <hr className="hr" />
                     <li className="nav-item link-menu" >
-                        <a className="nav-link">Autenticación</a>
-                    </li>
-                    <hr/>
-                    <li className="nav-item link-menu" >
-                        <a className="nav-link">Nuevo Mensaje</a>
-                    </li>
-                    <hr/>
-                    <li className="nav-item link-menu" >
-                        <a className="nav-link">Perfil</a>
-                    </li>
+                        <a href="#autenticacion" className="nav-link">Autenticación</a>
+                    </li>                    
+                    {this.handleUser()}
                 </ul>
             </nav>
         )
