@@ -39,10 +39,10 @@ export default class Profile extends Component {
             <div id="perfil" className="container profile animated bounceInDown" >
                 <h2 className="text-center" > Perfil </h2>
                 <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-3">
                         <img className="img-profile" src={this.props.user.photoURL} alt="foto"/>
                     </div>
-                    <div className="col-sm-6" >
+                    <div className="col-9" >
                         <br/>
                         <p><b>Nombre:</b> {this.props.user.displayName}</p>
                         <br/>

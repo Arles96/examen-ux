@@ -6,6 +6,14 @@
     height: 100vh !important;
 }
 
+a {
+    color:  rgb(177, 176, 176);
+}
+
+a:hover{
+    color: white;
+}
+
 .menu-button {
     font-size: 32px;
     color: rgb(177, 176, 176);

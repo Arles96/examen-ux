@@ -15,11 +15,19 @@ export default class Wall extends Component {
         database().ref("message").on("value", (data)=> {
             let list = []
             data.forEach( doc => {
-                console.log(doc.val())
-                list.push(doc.val())
-                this.setState({
-                    ms : list
-                })
+                if (doc.val().estado==="publico"){
+                    list.push(doc.val())
+                    this.setState({
+                        ms : list
+                    })
+                }else {
+                    if (doc.val().uid===this.props.user.uid){
+                        list.push(doc.val())
+                        this.setState({
+                            ms : list
+                        })
+                    }
+                }                
             })
         })
     }
@@ -28,7 +36,7 @@ export default class Wall extends Component {
         let data = this.state.ms.map((doc)=> {
             console.log(doc)
             return (
-                <div>
+                <div className="container-fluid" >
                     <div className="card">                    
                         <div className="card-body">
                             <h5 className="card-title text-center">Titulo: {doc.title}</h5>

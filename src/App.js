@@ -89,6 +89,7 @@ class App extends Component {
     if (this.state.user){
       return (
         <div>
+          <Navbar event={this.handleOpenMenu} />
           <Profile 
             user={this.state.user}
           />

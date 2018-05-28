@@ -4,7 +4,7 @@ import './Navbar.css'
 class Navbar extends Component {
     render(){
         return (
-            <nav className="navbar navbar-expand-sm bg-dark navbar-dark row nav-menu pl-0 pr-0" >
+            <nav className="navbar bg-dark navbar-dark row nav-menu pl-0 pr-0" >
                 <div className="col-6 nav-color" >
                     <a className="nav-link">ForeX</a>
                 </div>

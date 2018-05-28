@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
+import './Message.css'
 
 export default class Message extends Component {
     
     render(){
         return(
-            <div id="mensaje" className="container animated bounceInDown" >
+            <div id="mensaje" className="container container-message animated bounceInDown" >
                 <hr/>
+                <br/>
                 <h2 className="text-center">Agregar Mensaje</h2>
                 <br/>
                 <form onSubmit={this.props.event} >
