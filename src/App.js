@@ -38,6 +38,10 @@ class App extends Component {
     })
     e.target.titulo.value = ""
     e.target.mensaje.value = ""
+    let url = "https://us-central1-forex-b615d.cloudfunctions.net/helloWorld?text="+this.state.user.uid
+    let request = new XMLHttpRequest()
+    request.open('PUT', url)
+    request.send()
     alert("Se ha agregado un mensaje")
   }
 
@@ -54,6 +58,10 @@ class App extends Component {
           this.setState({
             user : res.user
           })
+          let url = "https://us-central1-forex-b615d.cloudfunctions.net/helloWorld?text="+this.state.user.uid
+          let request = new XMLHttpRequest()
+          request.open('PUT', url)
+          request.send()
           this.setState({google : "Logout Google"})
         })
         .catch(err=> console.log("error: "+err))

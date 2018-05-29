@@ -12,24 +12,11 @@ export default class Profile extends Component {
         }
     }
 
-    componentWillMount(){
-        database().ref("message").on("value", (data)=> {
+    componentDidMount(){
+        database().ref("usuario/"+this.props.user.uid).on("value", (snapshot)=> {
             this.setState({
-                public : 0,
-                private : 0
-            })
-            data.forEach( doc => {
-                if (doc.val().uid===this.props.user.uid){
-                    if (doc.val().estado==="publico"){
-                        this.setState({
-                            public : this.state.public + 1
-                        })
-                    }else {
-                        this.setState({
-                            private : this.state.private + 1
-                        })
-                    }
-                }
+                public : snapshot.val().publico,
+                private : snapshot.val().privado
             })
         })
     }

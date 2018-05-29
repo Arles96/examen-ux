@@ -33,10 +33,9 @@ export default class Wall extends Component {
     }
 
     render(){
-        let data = this.state.ms.map((doc)=> {
-            console.log(doc)
+        let data = this.state.ms.map((doc, i)=> {
             return (
-                <div className="container-fluid" >
+                <div key={i} className="container-fluid text-center" >
                     <div className="card">                    
                         <div className="card-body">
                             <h5 className="card-title text-center">Titulo: {doc.title}</h5>

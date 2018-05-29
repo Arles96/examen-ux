@@ -12,7 +12,6 @@ export default class Menu extends Component {
         if (this.props.user){
             return (
                 <div>
-                    <hr className="hr" />
                     <li className="nav-item link-menu" >
                         <a href="#perfil" className="nav-link">Perfil</a>
                     </li>
@@ -30,6 +29,12 @@ export default class Menu extends Component {
                     </li>
                 </div>
             )
+        }else {
+            return (
+                <li className="nav-item link-menu" >
+                    <a href="#autenticacion" className="nav-link">Autenticación</a>
+                </li> 
+            )
         }
     }
 
@@ -43,10 +48,7 @@ export default class Menu extends Component {
                     <li className="nav-item link-menu" >
                         <a href="#Home" className="nav-link">Home</a>
                     </li>
-                    <hr className="hr" />
-                    <li className="nav-item link-menu" >
-                        <a href="#autenticacion" className="nav-link">Autenticación</a>
-                    </li>                    
+                    <hr className="hr" />                   
                     {this.handleUser()}
                 </ul>
             </nav>
